@@ -1,4 +1,4 @@
-name: Web Function - Commit Stage
+name: Web Stream - Commit Stage
 on: push
 
 env:
