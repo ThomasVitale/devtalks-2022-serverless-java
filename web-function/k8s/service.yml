@@ -1,0 +1,25 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: web-function
+spec:
+  template:
+    spec:
+      containers:
+        - image: ghcr.io/thomasvitale/web-function
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+            periodSeconds: 5
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: "0.1"
+            limits:
+              memory: 512Mi
+              cpu: "2"
